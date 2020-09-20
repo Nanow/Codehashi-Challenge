@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/helpers.dart';
 import '../../domain/entities/entities.dart';
+import '../helpers/helpers.dart';
 
 class PokemonModel {
-  final int id;
+  final String number;
   final String name;
   final String imageUrl;
   final String type;
   final Color color;
 
-  PokemonModel({this.id, this.name, this.imageUrl, this.type, this.color});
+  PokemonModel({this.number, this.name, this.imageUrl, this.type, this.color});
 
   factory PokemonModel.fromEntity(PokemonEntity entity) {
     return PokemonModel(
-      id: entity.id,
+      number: pokemonFactoryNumber(entity.id),
       name: entity.name,
       imageUrl: entity.imageUrl,
       type: entity.type,
