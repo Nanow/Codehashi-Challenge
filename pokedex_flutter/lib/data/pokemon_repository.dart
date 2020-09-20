@@ -1,6 +1,7 @@
+import '../domain/repositories/repositories.dart';
 import '../domain/entities/entities.dart';
 
-class PokemonRepository {
+class LocalPokemonRepository implements PokemonRepository {
   List<PokemonEntity> getPokemon() => [
         PokemonEntity(
             id: 1,

@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pokedex_flutter/data/pokemon_repository.dart';
 import 'package:pokedex_flutter/domain/entities/pokemon_entity.dart';
+import 'package:pokedex_flutter/domain/repositories/repositories.dart';
 
 class LocalListPokemon {
   final PokemonRepository _repository;
@@ -13,21 +14,22 @@ class LocalListPokemon {
   }
 }
 
-class PokemonRepositorySpy extends Mock implements PokemonRepository {}
+class LocalPokemonRepositorySpy extends Mock implements LocalPokemonRepository {
+}
 
 main() {
   LocalListPokemon sut;
   PokemonRepository repository;
 
   setUp(() {
-    repository = PokemonRepositorySpy();
+    repository = LocalPokemonRepositorySpy();
     sut = LocalListPokemon(repository);
   });
 
   PostExpectation mockRequest() => when(repository.getPokemon());
 
   void mockSucess() =>
-      mockRequest().thenAnswer((_) => PokemonRepository().getPokemon());
+      mockRequest().thenAnswer((_) => LocalPokemonRepositorySpy().getPokemon());
 
   test('Verify if local fetchAll calls the getPokemon method', () async {
     sut.fetchAll();
