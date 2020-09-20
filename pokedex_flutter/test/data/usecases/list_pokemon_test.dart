@@ -27,7 +27,7 @@ main() {
 
   test('Verify if local fetchAll calls the getPokemon method', () async {
     sut.fetchAll();
-    verify(repository.getPokemon());
+    verify(repository.getPokemon()).called(1);
   });
 
   test('Verify if local fetchAll returns a list of PokemonEntity', () async {

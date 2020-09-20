@@ -1,6 +1,6 @@
-import 'package:pokedex_flutter/domain/entities/entities.dart';
-import 'package:pokedex_flutter/domain/helpers/helpers.dart';
-import 'package:pokedex_flutter/domain/repositories/repositories.dart';
+import '../../domain/entities/entities.dart';
+import '../../domain/helpers/helpers.dart';
+import '../../domain/repositories/repositories.dart';
 
 class LocalListPokemon {
   final PokemonRepository _repository;
