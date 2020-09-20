@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color pokemonBgColor(String pokemontype) {
+Color pokemonBgColorFactory(String pokemontype) {
   if (pokemontype.toLowerCase() == "grass") {
     return Colors.green;
   }

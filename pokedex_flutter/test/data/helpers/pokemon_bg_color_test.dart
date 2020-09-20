@@ -6,21 +6,21 @@ main() {
   test(
     'Validate if pokemonBgColor will return red color for fire type',
     () {
-      final color = pokemonBgColor('fire');
+      final color = pokemonBgColorFactory('fire');
       assert(color == Colors.red);
     },
   );
   test(
     'Validate if pokemonBgColor will return blue color for water type',
     () {
-      final color = pokemonBgColor('water');
+      final color = pokemonBgColorFactory('water');
       assert(color == Colors.blue);
     },
   );
   test(
     'Validate if pokemonBgColor will return blue color for grass type',
     () {
-      final color = pokemonBgColor('grass');
+      final color = pokemonBgColorFactory('grass');
       assert(color == Colors.green);
     },
   );
