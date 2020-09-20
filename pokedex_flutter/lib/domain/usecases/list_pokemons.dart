@@ -1,4 +1,4 @@
-import 'package:pokedex_flutter/domain/entities/pokemon_entity.dart';
+import '../../domain/entities/entities.dart';
 
 abstract class ListPokemons {
   List<PokemonEntity> fetchAll();
