@@ -2,10 +2,11 @@
 
 > ## Caso de sucesso
 
-1. Sistema apresenta um loading na tela
-2. Sistema retorna uma lista com todos os pokemons
+1. Sistema faz uma requisição ao repositório
+2. Sistema valida os dados recebidos da api
+3. Sistema retorna uma lista com os pokemons
 
-> ## Excessão - Falha ao carregar dados
+> ## Excessão - Dados Inválidos
 
-1. Sistema apresenta um loading na tela
+1. Sistema retorna uma mensagem de erro inesperado
 2. Sistema solicita ao usuário para tentar novamente
