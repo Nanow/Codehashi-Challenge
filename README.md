@@ -113,6 +113,8 @@ At the root folder you will see two projects:
 
 Choose one of them (or even both!) to answer this exercise.
 
+R: **Only flutter project**
+
 When you execute them you will see this screen:
 
 <div align="center">

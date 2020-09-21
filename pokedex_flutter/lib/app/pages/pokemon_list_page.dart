@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import './components/components.dart';
-import '../../data/models/models.dart';
-import '../../domain/helpers/domain_error.dart';
 import '../components/components.dart';
 import '../pages/pages.dart';
+
+import '../../data/models/models.dart';
+import '../../domain/helpers/domain_error.dart';
 
 class PokemonListPage extends StatefulWidget {
   final PokemonListController controller;
