@@ -8,6 +8,4 @@
 
 > ## Falha ao carregar os pokemons
 
-1. Cancelar o loading
-2. Mostrar mensagem de error
-3. Exibir botão para tentar novamente
+1. ✅ Mostrar mensagem de error

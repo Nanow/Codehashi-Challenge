@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_flutter/app/factories/list/list_page_factory.dart';
 
-import './list/pokemon_list_page.dart';
+import '../app/factories/factories.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PokeApp',
-      home: PokemonListPage(controller: null),
+      home: makeLoginPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           brightness: Brightness.light,
