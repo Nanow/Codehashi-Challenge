@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_flutter/app/factories/list/list_page_factory.dart';
 
 import '../app/factories/factories.dart';
 
