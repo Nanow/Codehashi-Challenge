@@ -1,11 +1,11 @@
 # List pokemon Use Case
 
-> ## Caso de sucesso
+> ## Success case
 
-1. ✅ Sistema faz uma requisição ao repositório
-2. ✅ Sistema valida os dados recebidos da api
-3. ✅ Sistema retorna uma lista com os pokemons
+1. ✅ System make a request to repository
+2. ✅ System validate the data
+3. ✅ System return a list with pokemons
 
 > ## Excessão - Dados Inválidos
 
-1. ✅ Sistema retorna uma mensagem de erro inesperado
+1. ✅ System  returns a errro message with invalida data

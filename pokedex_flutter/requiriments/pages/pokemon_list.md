@@ -1,11 +1,11 @@
 # Pokemon List page steps
 
-> ## Sucesso
+> ## Success
 
-1. ✅ Inciar a página com o loading
-2. ✅ Cancelar o loading
-3. ✅ Mostrar os pokemons na tela
+1. ✅ Start page with loading
+2. ✅ Cancel loading
+3. ✅ Show pokemons in screen 
 
-> ## Falha ao carregar os pokemons
+> ## Error in loading pokemons
 
-1. ✅ Mostrar mensagem de error
+1. ✅ Show error message
