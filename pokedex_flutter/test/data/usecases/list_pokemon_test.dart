@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:pokedex_flutter/data/repositories/pokemon_repository.dart';
+import 'package:pokedex_flutter/data/repositories/repositories.dart';
 import 'package:pokedex_flutter/data/usecases/usecases.dart';
 import 'package:pokedex_flutter/domain/entities/entities.dart';
 import 'package:pokedex_flutter/domain/helpers/helpers.dart';

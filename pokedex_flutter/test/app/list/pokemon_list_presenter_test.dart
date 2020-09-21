@@ -6,6 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:pokedex_flutter/app/list/components/components.dart';
 import 'package:pokedex_flutter/app/list/list.dart';
 import 'package:pokedex_flutter/data/models/models.dart';
+import 'package:pokedex_flutter/domain/helpers/helpers.dart';
 
 class PokemonListControllerSpy extends Mock implements PokemonListController {}
 
@@ -13,12 +14,15 @@ main() {
   PokemonListController sut;
   StreamController<bool> isLoadingController;
   StreamController<List<PokemonModel>> pokemonsController;
+  StreamController<DomainError> errorController;
 
   void initStream() {
     isLoadingController = StreamController<bool>();
+    errorController = StreamController<DomainError>();
     pokemonsController = StreamController<List<PokemonModel>>();
     when(sut.isLoadingController).thenAnswer((_) => isLoadingController.stream);
     when(sut.pokemonsController).thenAnswer((_) => pokemonsController.stream);
+    when(sut.errorController).thenAnswer((_) => errorController.stream);
     isLoadingController.add(true);
   }
 
@@ -32,6 +36,7 @@ main() {
   tearDown(() {
     isLoadingController?.close();
     pokemonsController?.close();
+    errorController?.close();
   });
 
   testWidgets(
@@ -77,5 +82,22 @@ main() {
     ]);
     await tester.pump(Duration.zero);
     expect(find.byType(PokemonCard), findsOneWidget);
+  });
+  testWidgets('Should ask to user to retry if has error', (
+    WidgetTester tester,
+  ) async {
+    await loadPage(tester);
+    pokemonsController.add([]);
+    isLoadingController.add(false);
+
+    errorController.add(DomainError.unexpected);
+    await tester.pump();
+
+    expect(
+      find.byType(
+        SnackBar,
+      ),
+      findsOneWidget,
+    );
   });
 }

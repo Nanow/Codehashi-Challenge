@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 import './components/components.dart';
 
+import '../components/components.dart';
 import '../list/pokemon_list_controller.dart';
 import '../../data/models/models.dart';
+import '../../domain/helpers/domain_error.dart';
 import '../../domain/entities/entities.dart';
 
 class PokemonListPage extends StatefulWidget {
@@ -40,43 +42,65 @@ class _PokemonListPageState extends State<PokemonListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pokedex ${size.width}"),
+        title: Text("Pokedex"),
       ),
-      body: StreamBuilder<bool>(
-        stream: widget.controller.isLoadingController,
-        builder: (context, snapshot) {
-          if (snapshot.hasData && snapshot.data) {
-            return const Center(
-              child: const CircularProgressIndicator(),
-            );
-          }
-          return StreamBuilder<List<PokemonModel>>(
-            stream: controller.pokemonsController,
+      body: Builder(
+        builder: (context) {
+          controller.errorController.listen((DomainError error) {
+            if (error != null) showErrorMessage(context, error.description);
+          });
+
+          return StreamBuilder<bool>(
+            stream: widget.controller.isLoadingController,
             builder: (context, snapshot) {
-              if (!snapshot.hasData) {
+              if (snapshot.hasData && snapshot.data) {
                 return const Center(
                   child: const CircularProgressIndicator(),
                 );
               }
-              return GridView.builder(
-                itemCount: snapshot.data.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: size.width / 300,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return PokemonCard(
-                    pokemon: snapshot.data[index],
-                  );
-                },
-              );
+              return PokdexGrid(controller: controller);
             },
           );
         },
       ),
+    );
+  }
+}
+
+class PokdexGrid extends StatelessWidget {
+  const PokdexGrid({
+    Key key,
+    @required this.controller,
+  }) : super(key: key);
+
+  final PokemonListController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return StreamBuilder<List<PokemonModel>>(
+      stream: controller.pokemonsController,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: const CircularProgressIndicator(),
+          );
+        }
+        return GridView.builder(
+          itemCount: snapshot.data.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: size.width / 300,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return PokemonCard(
+              pokemon: snapshot.data[index],
+            );
+          },
+        );
+      },
     );
   }
 }
