@@ -10,7 +10,12 @@ class PokemonModel {
   final String type;
   final Color color;
 
-  PokemonModel({this.number, this.name, this.imageUrl, this.type, this.color});
+  PokemonModel(
+      {@required this.number,
+      @required this.name,
+      @required this.imageUrl,
+      @required this.type,
+      @required this.color});
 
   factory PokemonModel.fromEntity(PokemonEntity entity) {
     return PokemonModel(

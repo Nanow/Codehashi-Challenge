@@ -6,5 +6,7 @@ abstract class PokemonListController {
   Stream<List<PokemonModel>> pokemonsController;
   Stream<bool> isLoadingController;
 
+  void fetchPokemons();
+
   dispose();
 }

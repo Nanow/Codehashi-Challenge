@@ -4,7 +4,7 @@
 
 1. ✅ Inciar a página com o loading
 2. ✅ Cancelar o loading
-3. Mostrar os pokemons na tela
+3. ✅ Mostrar os pokemons na tela
 
 > ## Falha ao carregar os pokemons
 
