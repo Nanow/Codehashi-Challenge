@@ -11,9 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get: ^3.11.1
   cached_network_image: ^2.2.0+1
 
 dev_dependencies:
+  faker:
+  mockito:
+  test:
   flutter_test:
     sdk: flutter
 

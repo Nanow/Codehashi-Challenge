@@ -22,7 +22,32 @@ public class SomethingIsWrong {
 ```
 
 a. What is wrong with the code?
+
+R: Considering that exist the class **Rectangle** and the same are imported, the fields exists and are public. The only thing missing will be the object's initialization;
+
 b. How can we fix it?
+
+R:
+
+```java
+public class Rectangle {
+    public int width;
+    public int heigth;
+
+    public int area(){
+        return this.width * this.heigth;
+    }
+
+    public static void main(String[] args) {
+        Rectangle myRect = new Rectangle();
+        myRect.width = 10;
+        myRect.heigth = 10;
+        System.out.println("myRect's area is " + rectangle.area());
+    }
+
+
+}
+```
 
 ## Exercise 3
 
@@ -52,15 +77,32 @@ public class ClassB extends ClassA {
 }
 ```
 
-a. Which method overrides a method in the superclass?  
+a. Which method overrides a method in the superclass?
+
+R: **methodTwo**
+
 b. Which method hides a method in the superclass?  
+
+R: **methodThree**
+
 c. What do the other methods do?
+
+R: **methodOne, methodFour** static method can't override a normal method and static method can't override.
 
 ## Exercise 4
 
 a. What is the difference between Dependency Inversion and Dependency Injection?
 
+Dependency Inversion, aims to decrease the level of dependency of a project module, flexible systems should depends on interface or abstract class.
+
+Dependency Injection has the objective to organize the initialization and the hierarchy of creation.
+
 b. Why should we use each one?
+
+R:
+Dependency Inversion has the capacity to remove the higth dependency on external libraries, and convert to low level. This means that if a library is discontinued or a better one emerges, moving to another does not cause major problems or code changes.
+
+Dependency injection helps orchestrate the creation of dependencies, especially in a layered architecture. It also helps in the creation of unique instances (Singletons).
 
 ## Exercise 5
 
@@ -70,6 +112,8 @@ At the root folder you will see two projects:
 - [pokedex_flutter](./pokedex_flutter) which you can open with [Android Studio](https://developer.android.com/studio) or [VS Code](https://code.visualstudio.com/)
 
 Choose one of them (or even both!) to answer this exercise.
+
+R: **Only flutter project**
 
 When you execute them you will see this screen:
 
