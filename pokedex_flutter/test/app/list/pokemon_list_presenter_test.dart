@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:pokedex_flutter/app/list/components/components.dart';
-import 'package:pokedex_flutter/app/list/list.dart';
+import 'package:pokedex_flutter/app/pages/components/components.dart';
+import 'package:pokedex_flutter/app/pages/pages.dart';
 import 'package:pokedex_flutter/data/models/models.dart';
 import 'package:pokedex_flutter/domain/helpers/helpers.dart';
 
@@ -12,18 +12,16 @@ class PokemonListControllerSpy extends Mock implements PokemonListController {}
 
 main() {
   PokemonListController sut;
-  StreamController<bool> isLoadingController;
+
   StreamController<List<PokemonModel>> pokemonsController;
   StreamController<DomainError> errorController;
 
   void initStream() {
-    isLoadingController = StreamController<bool>();
     errorController = StreamController<DomainError>();
     pokemonsController = StreamController<List<PokemonModel>>();
-    when(sut.isLoadingController).thenAnswer((_) => isLoadingController.stream);
+
     when(sut.pokemonsController).thenAnswer((_) => pokemonsController.stream);
     when(sut.errorController).thenAnswer((_) => errorController.stream);
-    isLoadingController.add(true);
   }
 
   Future<void> loadPage(WidgetTester tester) async {
@@ -34,7 +32,6 @@ main() {
   }
 
   tearDown(() {
-    isLoadingController?.close();
     pokemonsController?.close();
     errorController?.close();
   });
@@ -43,7 +40,7 @@ main() {
       'Should show loading if stramController isLoadingController is true',
       (WidgetTester tester) async {
     await loadPage(tester);
-    isLoadingController.add(true);
+
     await tester.pump(Duration.zero);
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -54,7 +51,6 @@ main() {
       (WidgetTester tester) async {
     await loadPage(tester);
 
-    isLoadingController.add(false);
     pokemonsController.add([]);
     await tester.pump(Duration.zero);
 
@@ -70,7 +66,7 @@ main() {
     WidgetTester tester,
   ) async {
     await loadPage(tester);
-    isLoadingController.add(false);
+
     pokemonsController.add([
       PokemonModel(
         number: "100",
@@ -88,7 +84,6 @@ main() {
   ) async {
     await loadPage(tester);
     pokemonsController.add([]);
-    isLoadingController.add(false);
 
     errorController.add(DomainError.unexpected);
     await tester.pump();
