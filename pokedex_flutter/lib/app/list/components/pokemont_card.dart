@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../data/models/models.dart';
@@ -63,9 +64,10 @@ class PokemonCard extends StatelessWidget {
               Flexible(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(maxHeight: 55),
-                  child: Image.network(
-                    pokemon.imageUrl,
+                  child: CachedNetworkImage(
+                    imageUrl: pokemon.imageUrl,
                     fit: BoxFit.cover,
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
               ),

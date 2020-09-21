@@ -31,18 +31,36 @@ class PokemonListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Pokedex ${size.width}"),
       ),
-      body: GridView.builder(
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: size.width / 300,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          return PokemonCard(
-            pokemon: pokemon,
-          );
-        },
-      ),
+      body: StreamBuilder<bool>(
+          stream: controller.isLoadingController,
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data) {
+              return const Center(
+                child: const CircularProgressIndicator(),
+              );
+            }
+            return StreamBuilder<List<PokemonModel>>(
+                stream: controller.pokemonsController,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return GridView.builder(
+                    itemCount: 10,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: size.width / 300,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return PokemonCard(
+                        pokemon: pokemon,
+                      );
+                    },
+                  );
+                });
+          }),
     );
   }
 }
