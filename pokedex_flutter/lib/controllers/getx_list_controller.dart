@@ -19,7 +19,8 @@ class GetxListController extends GetxController
       _pokemonsController.stream;
 
   @override
-  dispose() {
+  void dispose() {
+    super.dispose();
     _errorController.close();
 
     _pokemonsController.close();
